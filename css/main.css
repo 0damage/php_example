@@ -1,3 +1,7 @@
+* {
+    outline: none;
+}
+
 *::-webkit-input-placeholder {
 	color: #666;
 	opacity: 1;
@@ -17,11 +21,49 @@
 body {
 	font-family: "RobotoRegular", sans-serif;
 	font-size: 16px;
+        background-color:#666666;
 }
-
-/* Вход/Регистрация_____________________________________________________________ */
-
-h3 {
+.registration {
+    margin-top:300px;
+}
+.registration h3 , .registration p {
     text-align:center;
-    color:red;
+    color:#fff;
+}
+.registration form {
+    text-align:center; 
+    width: 200px; /* иначе не будет центрироваться */
+    margin: auto; /* иначе не будет центрироваться */
+}
+.registration input {
+    margin:auto auto 10px auto;
+    display:block;
+    padding:5px;
+    border:1px solid #CCCCCC;
+    border-radius:5px;
+}
+.registration input:focus {
+    border:1px solid #DE545B;
+}
+.registration button {
+    color:#fff;
+    display:block;
+    margin:auto;
+    padding:5px 3px 5px 3px;
+    width:150px;
+    background-color:#DE545B;
+    border:1px solid #DE545B;
+    border-radius:5px;
+}
+.registration button:hover {
+    background-color:#CC3333;
+    border:1px solid #CC3333;
+    -webkit-transition:0.5s;
+    -moz-transition:0.5s;
+    -o-transition:0.5s;
+    transition:0.5s;    
+}
+a {
+    color:#fff;
+    text-decoration:underline;
 }

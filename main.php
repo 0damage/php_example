@@ -22,6 +22,26 @@
         <link href='https://fonts.googleapis.com/css?family=Anonymous+Pro' rel='stylesheet' type='text/css'>        
 </head>
 <body>
+    <section class="main_registration">
+        <div class="container">
+            <div class="col-md-12">
+                <div class="registration">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Добро пожаловать</h3>
+                            <p>Авторизируйтесь</p>
+                            <form action="" method="POST">
+                                <input type="text" name="login" placeholder="Введите логин">
+                                <input type="password" name="password" placeholder="Введите пароль">
+                                <button class="submit_login" name="submit_login">Войти</button>
+                            </form>
+                            <p>Если вы не зарегистрированы, <a href="registration.php">зарегистрируйтесь.</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!--[if lt IE 9]>
     <script src="libs/html5shiv/es5-shim.min.js"></script>
     <script src="libs/html5shiv/html5shiv.min.js"></script>
