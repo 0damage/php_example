@@ -1,4 +1,4 @@
-﻿<?php 
+<?php 
 require_once 'logi.php';
 
 // подключение к базе данных через субд mysql расширение PDO

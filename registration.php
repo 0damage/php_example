@@ -1,24 +1,27 @@
 <?php
 require_once 'function.php';
-
-// Если нажали кнопку Войти
-if($_POST['submit']) {
-    //Убираем лишние пробелы с введенным пользователем логина и пароля
+if(isset($_POST['submit'])) {
     $login_trim=trim($_POST['login']);
+    $email_trim=trim($_POST['email']);
     $password_trim=trim($_POST['password']);
-    //Выполняем проверку ввел ли пользователь лог и пароль и ввел ли правильно
-    $error_login=$error_password='';
-    $error_login=checkLogin($login_trim)===true ? '' : checkLogin($login_trim);
-    $error_password=checkPassword($password_trim)===true ? '' : checkPassword($password_trim);
-    //Если предыдущие условие возвращает true,то выполняем ф-цию авторизации
-    if($error_login=='' && $error_password=='') {
-    $auth=authorization($login_trim,$password_trim,$pdo);
-    }
+    $password2_trim=trim($_POST['password2']);
     
-    if($auth===true) {
-        header('Location:http://exx/final_direction.php');
-    }
-    $oshibka=$auth;
+    $error_log=checkLogin($login_trim)===true ? '' : checkLogin($login_trim);
+    $error_email=checkEmail($email_trim)===true ? '' : checkEmail($email_trim);
+    $error_pass=checkPassword($password_trim)===true ? '' : checkPassword($password_trim);
+    $error_pass2=checkPassword($password2_trim)===true ? '' : checkPassword($password2_trim);
+    $password_trim==$password2_trim ? '' : $error_pass2="Пароли не совпадают";
+    
+        if($error_log=='' && $error_email=='' && $error_pass=='' && $error_pass2=='') {
+    $reg=registration($login_trim,$email_trim,$password_trim,$password2_trim,$pdo);
+        }
+    
+        if($reg===true) {
+            header('Location:http://exx/direction_log_in.php');
+        }
+        else {
+            $oshibka=$reg;
+        }
 }
 ?><!DOCTYPE html>
 <!--[if lt IE 7]><html lang="ru" class="lt-ie9 lt-ie8 lt-ie7"><![endif]-->
@@ -51,15 +54,18 @@ if($_POST['submit']) {
                     <div class="row">
                         <div class="col-md-12">
                             <h3>Добро пожаловать</h3>
-                            <p>Авторизируйтесь</p>
+                            <p>Зарегестрируйтесь</p>
                             <form action="" method="POST">
                                 <input type="text" name="login" placeholder="Введите логин">
-                                <div class="error" name ="error_login"><?php echo $error_login; ?><?php echo $oshibka; ?></div>
+                                <div class="error" name ="error_log"><?php echo $error_log; ?><?php echo $oshibka; ?></div>
+                                <input type="text" name="email" placeholder="Введите email">
+                                <div class="error" name ="error_email"><?php echo $error_email; ?></div>
                                 <input type="password" name="password" placeholder="Введите пароль">
-                                <div class="error" name ="error_password"><?php echo $error_password; ?></div>
-                                <input type ="submit" class="submit_login" name="submit" value="Войти">
+                                <div class="error" name ="error_pass"><?php echo $error_pass; ?></div>
+                                <input type="password" name="password2" placeholder="Повторите пароль">
+                                <div class="error" name ="error_pass2"><?php echo $error_pass2; ?></div>
+                                <input type="submit" class="submit_login" name="submit" value="Зарегестрироваться">
                             </form>
-                            <p>Если вы не зарегистрированы, <a href="registration.php">зарегистрируйтесь.</a></p>
                         </div>
                     </div>
                 </div>

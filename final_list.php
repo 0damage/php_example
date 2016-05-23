@@ -1,26 +1,4 @@
-<?php
-require_once 'function.php';
-
-// Если нажали кнопку Войти
-if($_POST['submit']) {
-    //Убираем лишние пробелы с введенным пользователем логина и пароля
-    $login_trim=trim($_POST['login']);
-    $password_trim=trim($_POST['password']);
-    //Выполняем проверку ввел ли пользователь лог и пароль и ввел ли правильно
-    $error_login=$error_password='';
-    $error_login=checkLogin($login_trim)===true ? '' : checkLogin($login_trim);
-    $error_password=checkPassword($password_trim)===true ? '' : checkPassword($password_trim);
-    //Если предыдущие условие возвращает true,то выполняем ф-цию авторизации
-    if($error_login=='' && $error_password=='') {
-    $auth=authorization($login_trim,$password_trim,$pdo);
-    }
-    
-    if($auth===true) {
-        header('Location:http://exx/final_direction.php');
-    }
-    $oshibka=$auth;
-}
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if lt IE 7]><html lang="ru" class="lt-ie9 lt-ie8 lt-ie7"><![endif]-->
 <!--[if IE 7]><html lang="ru" class="lt-ie9 lt-ie8"><![endif]-->
 <!--[if IE 8]><html lang="ru" class="lt-ie9"><![endif]-->
@@ -50,16 +28,7 @@ if($_POST['submit']) {
                 <div class="registration">
                     <div class="row">
                         <div class="col-md-12">
-                            <h3>Добро пожаловать</h3>
-                            <p>Авторизируйтесь</p>
-                            <form action="" method="POST">
-                                <input type="text" name="login" placeholder="Введите логин">
-                                <div class="error" name ="error_login"><?php echo $error_login; ?><?php echo $oshibka; ?></div>
-                                <input type="password" name="password" placeholder="Введите пароль">
-                                <div class="error" name ="error_password"><?php echo $error_password; ?></div>
-                                <input type ="submit" class="submit_login" name="submit" value="Войти">
-                            </form>
-                            <p>Если вы не зарегистрированы, <a href="registration.php">зарегистрируйтесь.</a></p>
+                            <i class="fa fa-smile-o" aria-hidden="true"></i>
                         </div>
                     </div>
                 </div>
